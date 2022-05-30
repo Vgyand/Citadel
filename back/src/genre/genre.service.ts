@@ -20,20 +20,23 @@ export class GenreService {
             options = {
                 $or: [
                     {
-                        email: new RegExp(searchTerm, 'i')
+                        name: new RegExp(searchTerm, 'i'),
                     },
                     {
-                        slug: new RegExp(searchTerm, 'i')
+                        slug: new RegExp(searchTerm, 'i'),
                     },
                     {
-                        description: new RegExp(searchTerm, 'i')
-                    }
-                ]
+                        description: new RegExp(searchTerm, 'i'),
+                    },
+                ],
             }
         }
-        return this.GenreModel.find(options).select('-updatedAt -__v').sort({
-            createdAt: 'desc'
-        }).exec()
+
+        return this.GenreModel
+            .find(options)
+            .select('-updatedAt -__v')
+            .sort({ createdAt: 'desc' })
+            .exec()
     }
 
     async getCollections() {
@@ -51,9 +54,12 @@ export class GenreService {
     }
 
     async update(_id: string, dto: CreateGenreDto) {
-        return this.GenreModel.findByIdAndUpdate(_id, dto, {
+        const updateDoc = await this.GenreModel.findByIdAndUpdate(_id, dto, {
             new: true
         }).exec()
+
+        if (!updateDoc) throw new NotFoundException('Genre not found')
+        return updateDoc
     }
 
     async create() {
@@ -68,6 +74,8 @@ export class GenreService {
     }
 
     async delete(id: string) {
-        return this.GenreModel.findByIdAndDelete(id).exec()
+        const deleteDoc = await this.GenreModel.findByIdAndDelete(id).exec()
+        if (!deleteDoc) throw new NotFoundException('Genre not found')
+        return deleteDoc
     }
 }
