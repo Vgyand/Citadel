@@ -8,7 +8,7 @@ export class Parameters {
     description: number
 
     @IsString()
-    country: number
+    country: string
 }
 
 export class CreateMovieDto {
@@ -41,6 +41,5 @@ export class CreateMovieDto {
     @IsString({ each: true })
     actors: string[]
 
-    @IsBoolean()
     isSendTelegram?: string
 }
