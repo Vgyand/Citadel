@@ -1,3 +1,6 @@
+import { MovieModule } from 'src/movie/movie.module';
+import { MovieModel } from './../movie/movie.model';
+import { MovieService } from './../movie/movie.service';
 import { Module } from '@nestjs/common';
 import { GenreController } from './genre.controller';
 import { GenreService } from './genre.service';
@@ -13,8 +16,9 @@ import { GenreModel } from './genre.model';
       },
     },
   ]),
+    MovieModule
   ],
   controllers: [GenreController],
-  providers: [GenreService]
+  providers: [GenreService],
 })
 export class GenreModule { }
