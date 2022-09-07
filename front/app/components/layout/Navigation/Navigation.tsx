@@ -8,7 +8,6 @@ const Navigation: FC = () => {
         <div className={style.navigation}>
             <Logo />
             <MenuContainer />
-
         </div>
     )
 }
