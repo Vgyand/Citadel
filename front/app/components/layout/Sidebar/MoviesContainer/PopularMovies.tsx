@@ -6,7 +6,7 @@ import MovieList from "./MovieList"
 const PopularMovies: FC = () => {
     const { isLoading, data } = useQuery('Most Popular Movies', () => (MoviesService.getMostPopularMovies()))
     return (
-        <div>{isLoading ? <div className='m-3'>
+        <div>{isLoading ? <div className='mt-11'>
             loading...
         </div> : <MovieList movies={data || []} link="/trending" title="Popular Movies" />
         }
