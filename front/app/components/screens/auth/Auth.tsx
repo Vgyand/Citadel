@@ -7,6 +7,7 @@ import styles from './Auth.module.scss'
 import Meta from '@/utils/meta/Meta'
 import Heading from '@/components/ui/heading/Heading'
 import Button from '@/components/ui/FormElements/Button'
+import AuthFields from './AuthFields'
 
 const Auth: FC = () => {
     useAuthRedirect()
@@ -25,6 +26,7 @@ const Auth: FC = () => {
         <section className={styles.wrapper}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Heading title="Auth" className='mb-6' />
+                <AuthFields formState={formState} register={registerInput} isPasswordRequired />
                 <div className={styles.buttons}>
                     <Button type='submit' onClick={() => setType('login')} disabled={isLoading} >Login</Button>
                     <Button type='submit' onClick={() => setType('login')} disabled={isLoading} >Register</Button>
