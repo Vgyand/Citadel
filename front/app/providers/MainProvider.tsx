@@ -1,5 +1,10 @@
 import Layout from "@/components/layout/Layout"
+import { store } from "@/store/store"
 import { QueryClient, QueryClientProvider } from "react-query"
+import { Provider } from "react-redux"
+import HeadProvider from "./HeadProvider"
+import ReduxToast from "./ReduxToast"
+
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -15,11 +20,19 @@ export interface LayoutProps {
 
 
 const MainProvider = (props: LayoutProps) => {
-    return <QueryClientProvider client={queryClient}>
-        <Layout>
-            {props.children}
-        </Layout>
-    </QueryClientProvider>
+    return (
+        <HeadProvider>
+            <Provider store={store}>
+                <QueryClientProvider client={queryClient}>
+                    <ReduxToast />
+                    <Layout>
+                        {props.children}
+                    </Layout>
+                </QueryClientProvider>
+            </Provider>
+        </HeadProvider>
+
+    )
 }
 
 export default MainProvider
