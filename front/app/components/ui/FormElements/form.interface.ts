@@ -3,7 +3,7 @@ import { FieldError } from "react-hook-form";
 
 export interface IFieldProps {
     placeholder: string
-    error?: FieldError | undefined
+    error?: any
 }
 export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> { }
 
