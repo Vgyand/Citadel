@@ -9,7 +9,7 @@ const Home: FC<IHome> = () => {
     return (
         <Meta title='Citadel' description='online cinema'>
             <Heading title="Home page" />
-            <button onClick={() => toastr.success('auth', 'suc')}>suc dic</button>
+            <button onClick={() => toastr.success('auth', 'success')}>btn</button>
         </Meta>
     )
 }
